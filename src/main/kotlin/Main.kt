@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     var index = 1
 
     do {
-        println("Lista de ficheros")
+        println("Lista de ficheros del archivo $currentFile")
         println("--------------------------------------------")
         println("-1 para terminar")
         println("0- Directorio padre")
