@@ -18,7 +18,8 @@ fun main(args: Array<String>) {
             println("$index- $file ${if(file.isDirectory) " <Directory>" else ""} ${if(file.isFile)"${file.length().ToMB()}MB" else ""} ")
             index++
         }
-        println("Escribe el indice al que quieras moverte")
+        println("--------------------------------------------")
+        println("Escribe el indice al que quieras moverte:")
         index = readln()!!.toInt()
         if (index!=-1) {
             if (index == 0) {
