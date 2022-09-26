@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
         println("-1 para terminar")
         println("0- Directorio padre")
         for (file in currentFile.listFiles()){
-            println("$index- $file ${if(file.isDirectory) " <Directory>" else ""} ${if(file.isFile)"${file.totalSpace.ToMB()}MB" else ""} ")
+            println("$index- $file ${if(file.isDirectory) " <Directory>" else ""} ${if(file.isFile)"${file.length().ToMB()}MB" else ""} ")
             index++
         }
         println("Escribe el indice al que quieras moverte")
