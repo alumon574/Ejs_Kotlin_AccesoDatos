@@ -1,4 +1,5 @@
 import java.io.File
+import java.util.Date
 
 fun Long.ToMB():Long{
     return this/(1024*1024)
@@ -6,21 +7,22 @@ fun Long.ToMB():Long{
 
 fun main(args: Array<String>) {
     var currentFile = File.listRoots()[0]
-    var userIndex = 0
     var index = 1
 
+
     do {
-        println("Lista de ficheros del archivo $currentFile")
-        println("--------------------------------------------")
-        println("-1 para terminar")
-        println("0- Directorio padre")
+        printHeader(currentFile)
         for (file in currentFile.listFiles()){
-            println("$index- $file ${if(file.isDirectory) " <Directory>" else ""} ${if(file.isFile)"${file.length().ToMB()}MB" else ""} ")
+            println( "$index- $file ${when {file.isDirectory -> " <Directory>" else -> "" }}" +
+                    " ${when {file.isFile -> "${file.length().ToMB()}MB " else -> "" }}" +
+                     checkPermission(file) +" "+ lastModification(file)
+            )
             index++
         }
-        println("--------------------------------------------")
-        println("Escribe el indice al que quieras moverte:")
+
+        printFooter()
         index = readln()!!.toInt()
+
         if (index!=-1) {
             if (index == 0) {
                 currentFile = currentFile.parentFile
@@ -35,11 +37,39 @@ fun main(args: Array<String>) {
 
 }
 
-/*fun printDirectory(boolean: Boolean): String {
-    var directory = ""
-    if (boolean==true)
-        directory = " <Directory>"
-    else directory = ""
-    return directory
-}*/
+private fun lastModification(file: File?):String{
+    if (file != null) {
+        if (file.isFile){
+            return Date(file.lastModified()).toString()
+        }
+    }
+    return ""
+}
+private fun checkPermission(file: File?):String{
+    var Permisions = ""
+    if (file != null && file.isFile) {
+        when {file.canRead() -> Permisions+="R"
+        else -> Permisions+="-"}
+        when {file.canWrite() -> Permisions+="W"
+        else -> Permisions+="-"}
+        when {file.canExecute() -> Permisions+="X"
+        else -> Permisions+="-"}
+
+    }
+    return Permisions
+}
+private fun printFooter() {
+    println("--------------------------------------------")
+    println("Escribe el indice al que quieras moverte:")
+}
+
+private fun printHeader(currentFile: File?) {
+    println("Lista de ficheros del archivo $currentFile")
+    println("--------------------------------------------")
+    println("-1 para terminar")
+    println("0- Directorio padre")
+}
+
+
+
 
