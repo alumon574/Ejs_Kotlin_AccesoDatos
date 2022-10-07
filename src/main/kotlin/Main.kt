@@ -5,23 +5,23 @@ fun Long.ToMB():Long{
     return this/(1024*1024)
 }
 
-fun main(args: Array<String>) {
+fun main() {
     var currentFile = File.listRoots()[0]
     var index = 1
 
 
     do {
         printHeader(currentFile)
-        for (file in currentFile.listFiles()){
+        for (file in currentFile.listFiles()!!){
             println( "$index- $file ${when {file.isDirectory -> " <Directory>" else -> "" }}" +
                     " ${when {file.isFile -> "${file.length().ToMB()}MB " else -> "" }}" +
-                     checkPermission(file) +" "+ lastModification(file)
+                     checkPermission(file) + "\t"+ lastModification(file)
             )
             index++
         }
 
         printFooter()
-        index = readln()!!.toInt()
+        index = readln().toInt()
 
         if (index!=-1) {
             if (index == 0) {
@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
                 continue
             }
 
-            currentFile = currentFile.listFiles()[index - 1]
+            currentFile = currentFile.listFiles()!![index - 1]
 
             index = 1
         }
