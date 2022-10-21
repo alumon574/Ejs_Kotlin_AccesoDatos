@@ -1,13 +1,11 @@
 package Tema3
 
-import java.io.DataInputStream
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.ObjectOutputStream
+import java.io.*
 
 fun main() {
+    val deSerializador = ObjectInputStream(FileInputStream("src/main/resources/rutes.obj"))
     val file = DataInputStream(FileInputStream("src/main/resources/rutes.dat"))
-    val serializador = ObjectOutputStream(FileOutputStream("resources/rutes.obj"))
+    val serializador = ObjectOutputStream(FileOutputStream("src/main/resources/rutes.obj"))
     val listaPuntos = ArrayList<PuntGeo>()
 
     while (file.available() > 0) {
@@ -23,11 +21,19 @@ fun main() {
             var puntGeo = PuntGeo(nombrePunto, coord)
             listaPuntos.add(puntGeo)
         }
-        val ruta = Ruta(nombreRuta,desnivell,desnivellAcumulat,listaPuntos)
+        val ruta = Ruta(nombreRuta, desnivell, desnivellAcumulat, listaPuntos)
         ruta.mostrarRuta()
-        serializador.writeObject(ruta)
         listaPuntos.clear()
+        serializador.writeObject(ruta)
     }
     file.close()
 
+
+}
+fun deserializar(){
+    try {
+        while (true){
+            var lis
+        }
+    }
 }
