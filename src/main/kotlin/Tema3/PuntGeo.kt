@@ -1,6 +1,8 @@
 package Tema3
 
-class PuntGeo (var nom:String, var coord:Coordenadas) {
+import java.io.Serializable
+
+class PuntGeo (var nom:String, var coord:Coordenadas):Serializable{
     companion object{
         private const val serialVersionUID: Long = 1
     }
