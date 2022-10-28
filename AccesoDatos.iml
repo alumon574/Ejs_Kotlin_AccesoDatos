@@ -11,5 +11,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="jar_files" level="application" />
+    <orderEntry type="library" name="json-20210307" level="project" />
   </component>
 </module>

@@ -57,9 +57,11 @@ class Finestra : JFrame() {
             area.text = ""
             for (i in 0 until puntos.length) {
                 val punt = puntos.item(i).childNodes
-                area.text += punt.item(0).textContent+"\n"
+                val nombre = punt.item(0).textContent
+                val latitud = punt.item(1).textContent
+                val longitud = punt.item(2).textContent
+                area.text += "$nombre  ($latitud,$longitud) \n"
             }
-            area.append(area.text)
         }
     }
 }
