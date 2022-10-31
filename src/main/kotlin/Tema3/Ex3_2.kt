@@ -28,5 +28,6 @@ fun main() {
         listaRutas.add(ruta)
     }
     serializador.writeObject(listaRutas)
+    deserializar()
     file.close()
 }

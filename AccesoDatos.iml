@@ -13,5 +13,6 @@
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="jar_files" level="application" />
     <orderEntry type="library" name="json-20210307" level="project" />
+    <orderEntry type="library" name="squareup.moshi.kotlin" level="project" />
   </component>
 </module>
