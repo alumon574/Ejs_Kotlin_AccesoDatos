@@ -1,15 +1,12 @@
 package Tema3
 
 import com.squareup.moshi.JsonAdapter
-import java.io.FileInputStream
-import java.io.FileReader
 
 import javax.swing.*
 import java.awt.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import org.w3c.dom.NodeList
 import java.io.File
 
 class FinestraJSON : JFrame() {
