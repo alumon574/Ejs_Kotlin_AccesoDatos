@@ -19,10 +19,6 @@ class Finestra : JFrame() {
         val rutes = root.childNodes
         var puntos: NodeList
 
-
-
-
-
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         setTitle("Punts d'una ruta")
         setSize(400, 300)
@@ -39,7 +35,6 @@ class Finestra : JFrame() {
             val ruta = rutes.item(i)
             val nom = ruta.firstChild.textContent
             llistaRutes.add(nom)
-
         }
 
         val combo = JComboBox(llistaRutes.toArray())

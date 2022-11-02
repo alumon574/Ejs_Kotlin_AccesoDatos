@@ -10,7 +10,5 @@ fun deserializar(): MutableList<Ruta> {
     val deSerializador = ObjectInputStream(FileInputStream("src/main/resources/rutes.obj"))
     val listaRutas = deSerializador.readObject() as MutableList<Ruta>
 
-   /* for (ruta in listaRutas)
-        ruta.mostrarRuta()*/
     return listaRutas
 }
