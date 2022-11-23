@@ -1,7 +1,7 @@
 import java.io.File
 import java.util.Date
 
-fun Long.ToMB():Long{
+fun Long.toMB():Long{
     return this/(1024*1024)
 }
 
@@ -9,12 +9,11 @@ fun main() {
     var currentFile = File.listRoots()[0]
     var index = 1
 
-
     do {
         printHeader(currentFile)
         for (file in currentFile.listFiles()!!){
             println( "$index- $file ${when {file.isDirectory -> " <Directory>" else -> "" }}" +
-                    " ${when {file.isFile -> "${file.length().ToMB()}MB " else -> "" }}" +
+                    " ${when {file.isFile -> "${file.length().toMB()}MB " else -> "" }}" +
                      checkPermission(file) + "\t"+ lastModification(file)
             )
             index++
