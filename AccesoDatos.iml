@@ -14,5 +14,16 @@
     <orderEntry type="library" name="jar_files" level="application" />
     <orderEntry type="library" name="json-20210307" level="project" />
     <orderEntry type="library" name="squareup.moshi.kotlin" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Baixades/jar_files (4).zip!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="jar://$USER_HOME$/Baixades/jar_files (4).zip!/" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="xerial.sqlite.jdbc" level="project" />
   </component>
 </module>

@@ -29,12 +29,26 @@ class fitxerImagen(fEnt: File) {
         val originalPixels = bytes.sliceArray(54 until bytes.size)
         fOut.appendBytes(originalPixels.map { (it.toUByte()/2u).toByte() }.toByteArray())
     }
+
+    fun mezclar(){
+        val fOut = File("src/main/resources/mezcla.bmp")
+        val fIn = File("src/main/resources/triangulo.bmp")
+        val fIn2 = File("src/main/resources/cuadrado.bmp")
+
+        val leeCuadrado = fIn2.readBytes()
+        val leeTrangulo = fIn.readBytes()
+
+        for (i in leeCuadrado.indices){
+            if (leeTrangulo[i]>=0)
+                leeCuadrado[i]=leeTrangulo[i]
+        }
+        fOut.writeBytes(leeCuadrado)
+    }
 }
 
 fun main() {
     val file = File("src/main/resources/penyagolosa.bmp")
-    fitxerImagen(file).negative()
-    fitxerImagen(file).obscure()
+    fitxerImagen(file).mezclar()
 }
 
 
