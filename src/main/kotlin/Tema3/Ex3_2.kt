@@ -7,6 +7,7 @@ fun main() {
     val file = DataInputStream(FileInputStream("src/main/resources/rutes.dat"))
     val serializador = ObjectOutputStream(FileOutputStream("src/main/resources/rutes.obj"))
     val listaPuntos = ArrayList<PuntGeo>()
+    val rutas = mutableListOf<Ruta>()
 
     while (file.available() > 0) {
         var nombreRuta = file.readUTF()
@@ -23,9 +24,11 @@ fun main() {
         }
         val ruta = Ruta(nombreRuta, desnivell, desnivellAcumulat, listaPuntos)
         ruta.mostrarRuta()
+        rutas.add(ruta)
         listaPuntos.clear()
-        serializador.writeObject(ruta)
+
     }
+    serializador.writeObject(rutas)
     file.close()
 
 }
