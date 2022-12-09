@@ -7,18 +7,26 @@ import java.io.ObjectInputStream
 import java.sql.DriverManager
 
 fun main() {
-    val url = "jdbc:sqlite:Tema4.sqlite"
+    val url = "jdbc:sqlite:src/main/resources/Tema4.sqlite"
     val con = DriverManager.getConnection(url)
     val statement = con.createStatement()
 
     val deSerializador = ObjectInputStream(FileInputStream("src/main/resources/rutes.obj"))
     val listaRutas = deSerializador.readObject() as MutableList<Ruta>
-
+    var numPunto = 0
     try {
         for (i in 0 until listaRutas.size) {
-            // statement.executeUpdate("INSERT INTO Rutes values (\"${i + 1}\",\"${listaRutas.get(i).nom}\",\"${listaRutas.get(i).desnivell}\",\"${listaRutas.get(i).desnivellAcumulat}\")")
-            for (j in 0 until listaRutas.get(i).llistaDePunts.size)
-                statement.executeUpdate("INSERT INTO Punts values (${i+1},${j+1},\"${listaRutas.get(i).getPunt(j).nom}\",${listaRutas.get(i).getPunt(j).coord.latitud},${listaRutas.get(i).getPunt(j).coord.longitud}")
+            val statement1 = "INSERT INTO Rutes(nombre_ruta, desnivel, desnivel_acumulado) VALUES (\"${listaRutas.get(i).nom}\",${listaRutas.get(i).desnivell},${listaRutas.get(i).desnivellAcumulat})"
+            println(statement1)
+            statement.executeUpdate(statement1)
+            val numRuta = statement.executeQuery("SELECT MAX(numero_ruta) from Rutes")
+            numRuta.next()
+            for (j in 0 until listaRutas[i].llistaDePunts.size){
+                numPunto++
+                val statement2 = "INSERT INTO Punts values ($numRuta,$numPunto,\"${listaRutas[i].llistaDePunts[j].nom}\",${listaRutas[i].llistaDePunts[j].coord.latitud},${listaRutas[i].llistaDePunts[j].coord.longitud})"
+                println(statement2)
+                statement.executeUpdate(statement2)
+            }
         }
     }
     catch (eof:EOFException){

@@ -22,7 +22,7 @@ fun main() {
             var puntGeo = PuntGeo(nombrePunto, coord)
             listaPuntos.add(puntGeo)
         }
-        val ruta = Ruta(nombreRuta, desnivell, desnivellAcumulat, listaPuntos)
+        val ruta = Ruta(nombreRuta, desnivell, desnivellAcumulat, listaPuntos.toMutableList())
         ruta.mostrarRuta()
         rutas.add(ruta)
         listaPuntos.clear()
